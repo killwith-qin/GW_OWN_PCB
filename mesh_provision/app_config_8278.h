@@ -61,13 +61,13 @@ extern "C" {
 #define HCI_ACCESS		HCI_USE_USB
 
 #if (HCI_ACCESS==HCI_USE_UART)
-#define UART_TX_PIN		UART_TX_PB1
-#define UART_RX_PIN		UART_RX_PB0
+#define UART_TX_PIN		UART_TX_PD3
+#define UART_RX_PIN		UART_RX_PD6
 #endif
 
 #define HCI_LOG_FW_EN   1
 #if HCI_LOG_FW_EN
-#define DEBUG_INFO_TX_PIN           		GPIO_PB2
+#define DEBUG_INFO_TX_PIN           		GPIO_PB0
 #define PRINT_DEBUG_INFO                    1
 #endif
 
@@ -128,12 +128,15 @@ extern "C" {
 //----------------------- GPIO for UI --------------------------------
 //---------------  Button 
 #if (PCBA_SEL == PCBA_8278_DONGLE_48PIN)
-#define PULL_WAKEUP_SRC_PD6     PM_PIN_PULLUP_1M	//btn
-#define PULL_WAKEUP_SRC_PD5     PM_PIN_PULLUP_1M	//btn
-#define PD6_INPUT_ENABLE		1
-#define PD5_INPUT_ENABLE		1
-#define	SW1_GPIO				GPIO_PD6
-#define	SW2_GPIO				GPIO_PD5
+#define PULL_WAKEUP_SRC_PC0    PM_PIN_PULLUP_1M	    //btn
+#define PULL_WAKEUP_SRC_PC2     PM_PIN_PULLUP_1M	//btn
+#define PULL_WAKEUP_SRC_PC3    PM_PIN_PULLUP_1M	    //btn
+#define PC0_INPUT_ENABLE		1
+#define PC2_INPUT_ENABLE		1
+#define PC3_INPUT_ENABLE		1
+#define	SW1_GPIO				GPIO_PC0
+#define	SW2_GPIO				GPIO_PC2
+#define	SW3_GPIO                GPIO_PC3
 #elif (PCBA_SEL == PCBA_8278_C1T197A30_V1_0)   // PCBA_8258_DEVELOPMENT_BOARD
 #define PULL_WAKEUP_SRC_PD2     PM_PIN_PULLUP_1M	//btn
 #define PULL_WAKEUP_SRC_PD1     PM_PIN_PULLUP_1M	//btn
@@ -173,9 +176,26 @@ extern "C" {
 
 #define GPIO_LED	PWM_R
 
-//qinwei PA4 OUTPUT
-#define PA4_OUTPUT_ENABLE  1
-#define PA4_DATA_OUT  1
+//FOR SW2812B
+
+#define SW2812B_PWR_ENABLE  GPIO_PA3
+#define PA3_OUTPUT_ENABLE   1
+#define PA3_DATA_OUT        1
+
+#define SW2812B_DIN         GPIO_PD4
+#define PD4_OUTPUT_ENABLE   1
+#define PD4_DATA_OUT        1
+
+
+#define   PCB_STAT_LED           GPIO_PA2
+#define   PA2_OUTPUT_ENABLE  1
+#define   PD2_DATA_OUT       1
+
+
+
+
+//qinwei PD4 OUTPUT 
+
 
 
 //qinwei PB5 OUTPUT

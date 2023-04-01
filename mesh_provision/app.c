@@ -94,8 +94,9 @@ int soft_timer_test0(void)
 
 
 /*Qin Wei function*/
-#define LED_SIGAL_SEND_PIN  (GPIO_PB5)  //register GPIO output
-#define SIGNAL_IO_REG_ADDR  (0x58B)    //register GPIO output
+#define LED_SIGAL_SEND_PIN    (GPIO_PD4)        //register GPIO output
+#define SIGNAL_IO_REG_ADDR    (0x583+((LED_SIGAL_SEND_PIN>>8)<<3)) //register GPIO output
+
 
 #define SINGAL_OUT_LOW      ( write_reg8 (read_reg8(SIGNAL_IO_REG_ADDR) & ( ~(LED_SIGAL_SEND_PIN & 0xff)  ) ) )
 
@@ -901,7 +902,7 @@ void User_General_Running_Function(void)
 	if( clock_time_exceed(Led_Yellow_Flash_Start_Tick, LED_YELLOW_FLASH_TIME))
 	{
 		Led_Yellow_Flash_Start_Tick = clock_time();
-		gpio_toggle(GPIO_PA4);
+		gpio_toggle(PCB_STAT_LED);
 	}
 }
 
@@ -1291,7 +1292,7 @@ void cb_My_Main_Loop_function(void)
 	//User_Test_ADV_Paekct_Send();
 
 	//Control LED
-	//User_Ctr_LED_Function();
+	User_Ctr_LED_Function();
 
     //GW ADV Interactive
 	if(GW_Role != GW_PASSIVE) {User_GW_ADV_Interactive_Active();}
